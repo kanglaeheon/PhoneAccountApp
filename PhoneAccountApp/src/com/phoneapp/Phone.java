@@ -30,7 +30,7 @@ public class Phone {
 
 	@Override
 	public String toString() {
-		return name + "," + hp + "," + tel;
+		return name + ", " + hp + ", " + tel;
 	}
 		
 }
