@@ -1,12 +1,5 @@
-package com.phoneapp;
+package com.phoneapp.v1;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,14 +7,6 @@ public class PhoneApp {
 	static final String rootPath = System.getProperty("user.dir") + "\\phonebook\\";
 	static final String filename = rootPath + "phonebook.txt";
 	public static void main(String[] args) {
-		File file = new File(filename);
-		
-		Reader fr = null;
-		Writer fw = null;
-		
-		BufferedReader br = null;
-		BufferedWriter bw = null;
-				
 		Scanner sc = new Scanner(System.in);
 		
 		PhoneController pc = new PhoneController();
@@ -41,7 +26,8 @@ public class PhoneApp {
 			
 			switch(menu) {
 			case 1 :
-				ArrayList<Phone> phoneList = pc.getList();				System.out.println("<1.리스트>");
+				ArrayList<Phone> phoneList = pc.getList();	
+				System.out.println("<1.리스트>");
 				 for(int i = 0; i < phoneList.size(); i++) {
                      System.out.println((i + 1) + ". " + phoneList.get(i));
                 }
@@ -84,10 +70,8 @@ public class PhoneApp {
 				System.out.println("[다시입력해주세요]");
 			}	//	switch 끝
 		}	//	while 끝
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			System.err.println("잘못 입력하셨습니다.");
 		}
 		finally {
 			try {

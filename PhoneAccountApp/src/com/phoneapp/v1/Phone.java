@@ -1,4 +1,4 @@
-package com.phoneapp;
+package com.phoneapp.v1;
 
 public class Phone {
 	//	필드
