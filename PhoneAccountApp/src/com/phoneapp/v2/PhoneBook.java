@@ -11,7 +11,7 @@ public class PhoneBook {
 		System.out.println("*        전화번호 관리 프로그램       *");
 		System.out.println("**********************************");
 
-		Scanner menuSc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		
 		try {
 			while(true) {
@@ -19,20 +19,18 @@ public class PhoneBook {
 				System.out.println("----------------------------------");
 				System.out.print(">메뉴번호: ");
 
-				int menu = menuSc.nextInt();
-			
-				switch(menu) {
+				switch(sc.nextInt()) {
 				case 1 :
 					listPb();
 					break;
 				case 2 :
-					insertPb();
+					insertPb(sc);
 					break;
 				case 3 :
-					deletePb();
+					deletePb(sc);
 					break;
 				case 4 :
-					searchPb();
+					searchPb(sc);
 					break;
 				case 5 :
 					System.out.println("**********************************");
@@ -47,7 +45,7 @@ public class PhoneBook {
 			e.printStackTrace();
 		} finally {
 			try {
-				menuSc.close();
+				sc.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -67,7 +65,7 @@ public class PhoneBook {
 		
 		while(it.hasNext()) {
 			PhoneBookVO vo = it.next();
-			System.out.printf("%d. %s %s  %s",
+			System.out.printf("%d. %s %s  %s%n",
 					vo.getId(),
 					vo.getName(),
 					vo.getHp(),
@@ -77,16 +75,14 @@ public class PhoneBook {
 	}
 	
 	// 2. 등록 메소드
-	private static void insertPb() {
+	private static void insertPb(Scanner sc) {
 		System.out.println("<2.등록>");
-		Scanner sc = new Scanner(System.in);
-		
 		System.out.print(">이름: ");
-		String name = sc.nextLine();
+		String name = sc.next();
 		System.out.print(">휴대전화: ");
-		String hd = sc.nextLine();
+		String hd = sc.next();
 		System.out.print(">전화번호: ");
-		String tel = sc.nextLine();
+		String tel = sc.next();
 		
 		PhoneBookVO vo = new PhoneBookVO(name, hd, tel);
 		
@@ -96,13 +92,11 @@ public class PhoneBook {
 				
 		System.out.println(success ? "[등록되었습니다]" : "[등록에 실패하였습니다]");
 		System.out.println();
-		sc.close();
 	}
 	
 	// 3. 삭제 메소드
-	private static void deletePb() {
+	private static void deletePb(Scanner sc) {
 		System.out.println("<3.삭제>");
-		Scanner sc = new Scanner(System.in);
 		
 		System.out.print(">번호: ");
 		long id = sc.nextLong();
@@ -113,14 +107,11 @@ public class PhoneBook {
 		
 		System.out.println(success ? "[삭제되었습니다]" : "[삭제에 실패하였습니다]");
 		System.out.println();
-		sc.close();
 	}
 	
 	// 4. 검색 메소드
-	private static void searchPb() {
-		System.out.println("<4.검색>");
-		Scanner sc = new Scanner(System.in);
-		
+	private static void searchPb(Scanner sc) {
+		System.out.println("<4.검색>");	
 		System.out.print(">이름: ");
 		String keyword = sc.next();
 		
@@ -137,7 +128,6 @@ public class PhoneBook {
 					vo.getHp(),
 					vo.getTel());
 		}
-		sc.close();
 		
 		System.out.println();
 	}
