@@ -122,7 +122,8 @@ public class PhoneBook {
 		
 		while(it.hasNext() ) {
 			PhoneBookVO vo = it.next();
-			System.out.printf("%d. %s %s  %s",
+									
+			System.out.printf("%d. %s %s  %s%n",
 					vo.getId(),
 					vo.getName(),
 					vo.getHp(),
